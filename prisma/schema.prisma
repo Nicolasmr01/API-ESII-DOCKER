@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+  generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id           Int      @id @default(autoincrement())
+  nome        String   @db.VarChar(60)
+  email        String   @db.VarChar(40)
+  senha    String   @db.VarChar(60)
+  token        String?  @db.VarChar(120)
+  loginAttempts Int       @default(0)
+  lockUntil     DateTime?
+  jogos      Jogo[]
+  logs         Log[]
+  @@map("users")
+}
+
+
+model Jogo {
+  id            Int            @id @default(autoincrement())
+  nome          String         @db.VarChar(60)
+  plataforma    String         @db.VarChar(60)
+  genero        Generos        @default(default) 
+  trilogia      Int            @default(1)
+  user          User           @relation(fields: [userId], references: [id])
+  userId        Int
+  deleted      Boolean         @default(false)
+  @@map("jogos")
+}
+
+
+model Log {
+  id           Int      @id @default(autoincrement())
+  desc    String   @db.VarChar(60)
+  complement  String   @db.VarChar(255)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt  
+  user      User  @relation(fields: [userId], references: [id])
+  userId    Int
+  @@map("logs")
+}
+
+
+enum Plataforma {
+  Playstation
+  Xbox
+  Mobile
+  PC
+}
+
+enum Generos { 
+  default
+  MMORPG
+  Moba
+  FPS
+  Horror
+  OpenWorld
+  Turno
+  RPG
+  SandBox
+}
