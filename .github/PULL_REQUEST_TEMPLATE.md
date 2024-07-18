@@ -1,32 +1,30 @@
-Prints dos código docker-compose e Dockerfile
+# Prints dos código docker-compose e Dockerfile
 
-Código do docker-compose
-![alt text](.github/imagens/compose.png)
+# Código do docker-compose
+![alt text](.imagens/compose.png)
 
-Descrição Compose:
+# Descrição Compose:
 
 Imagem MySql para o banco de dados.
 
 
-Código do Dockerfile
-![alt text](.github/imagens/dockerfile.png)
+# Código do Dockerfile
+![alt text](.imagens/dockerfile.png)
 
-Descrição Dockerfile:
+#Descrição Dockerfile:
 
  Imagem App para a API.
 
 
-
-
-
- FORMA PARA CONSTRUIR A IMAGEM DOCKER:
-
+ # FORMA PARA CONSTRUIR A IMAGEM DOCKER:
+````bash
 -- docker-compose build
-
- FORMA PARA EXECUTAR OS CONTEINERES:
-
+````
+ # FORMA PARA EXECUTAR OS CONTEINERES:
+````bash
 -- docker-compose up
-
- FORMA PARA REMOVER OS CONTEINERES EM EXECUÇÃO:
-
+````
+ # FORMA PARA REMOVER OS CONTEINERES EM EXECUÇÃO:
+````bash
 -- docker-compose down
+````
